@@ -2,6 +2,27 @@
 <html>
 <head>
     <title>French-English CSV Generator</title>
+    <meta charset="UTF-8"> <!-- Ensure UTF-8 encoding -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        textarea {
+            width: 70%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Convert French-English Translations to CSV</h1>
@@ -13,7 +34,7 @@
         function generateCSV() {
     var text = document.getElementById('inputText').value;
     var lines = text.split('\n');
-    var csvContent = "data:text/csv;charset=utf-8,";
+    var csvContent = "data:text/csv;charset=utf-8," + '\uFEFF'; // UTF-8 BOM for Excel compatibility
 
     lines.forEach(function(line) {
         csvContent += line + '\r\n';

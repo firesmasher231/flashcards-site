@@ -60,6 +60,7 @@
 		<script>
 			const cloudImages = ["cloud1.png", "cloud2.png", "cloud3.png"];
 			const cloudContainer = document.getElementById("cloudContainer");
+			const device = window.innerWidth > 640 ? "desktop" : "mobile";
 
 			function getRandomInt(max) {
 				return Math.floor(Math.random() * max);
@@ -71,7 +72,9 @@
 				cloud.className = "cloud";
 				cloud.style.top = getRandomInt(100) + "vh"; // Randomize vertical position
 				cloud.style.left = getRandomInt(100) + "vw"; // Randomize horizontal start position
-				cloud.style.width = getRandomInt(2) + 10 + "vw"; // Randomize size
+				cloud.style.width = device
+					? getRandomInt(15) + 20 + "vw"
+					: getRandomInt(2) + 10 + "vw"; // Randomize size
 				cloud.style.animationDuration = getRandomInt(20) + 10 + "s"; // Randomize speed
 				cloudContainer.appendChild(cloud);
 			}

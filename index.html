@@ -1,21 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>French-English CSV Generator</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Convert French-English Translations to CSV</h1>
-        <textarea id="inputText" placeholder="Enter translations here..."></textarea><br>
-        <button onclick="generateCSV()">Generate CSV</button>
-        <a id="downloadLink" style="display: none;">Download CSV</a>
-        <p style="font-size: 10px; margin: 1rem; "> Made by aj 🦒 </p>
-    </div>
+	<head>
+		<title>French-English CSV Generator</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			.cloud {
+				position: absolute;
+				top: 0;
+				opacity: 0.8;
+				animation: float 20s linear infinite;
+			}
 
+			@keyframes float {
+				from {
+					transform: translateX(100vw);
+				}
+				to {
+					transform: translateX(-100vw);
+				}
+			}
+		</style>
+	</head>
+	<body class="bg-blue-400 flex items-center justify-center pt-16 sm:pt-32">
+		<div
+			id="cloudContainer"
+			class="absolute top-0 left-0 w-full h-full overflow-hidden"
+		></div>
+		<div
+			class="flex flex-col justify-center items-center p-4 sm:p-8 bg-white shadow-lg rounded-lg max-w-xs sm:max-w-md z-10 mx-4"
+		>
+			<h1 class="font-bold mb-4 text-lg sm:text-xl text-center">
+				A <span class="text-blue-600">handy</span> translations converter
+				<span class="text-xs"> to CSV!</span>
+			</h1>
+			<textarea
+				id="inputText"
+				class="border-2 border-gray-300 p-2 w-full h-40 rounded-md"
+				placeholder="Enter translations here..."
+			></textarea>
+			<br />
+			<button
+				onclick="generateCSV()"
+				class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+			>
+				Generate CSV
+			</button>
+			<a
+				id="downloadLink"
+				class="block mt-4 text-blue-500 underline text-center"
+				style="display: none"
+				>Download CSV</a
+			>
+			<p class="text-xs mt-4 text-gray-500 text-center">Made by aj 🦒</p>
+		</div>
 
+		<script src="script.js"></script>
+		<script>
+			const cloudImages = ["cloud1.png", "cloud2.png", "cloud3.png"];
+			const cloudContainer = document.getElementById("cloudContainer");
 
-    <script src="script.js"></script>
-</body>
+			function getRandomInt(max) {
+				return Math.floor(Math.random() * max);
+			}
+
+			function createCloud() {
+				const cloud = document.createElement("img");
+				cloud.src = cloudImages[getRandomInt(cloudImages.length)];
+				cloud.className = "cloud";
+				cloud.style.top = getRandomInt(100) + "vh"; // Randomize vertical position
+				cloud.style.left = getRandomInt(100) + "vw"; // Randomize horizontal start position
+				cloud.style.width = getRandomInt(2) + 10 + "vw"; // Randomize size
+				cloud.style.animationDuration = getRandomInt(20) + 10 + "s"; // Randomize speed
+				cloudContainer.appendChild(cloud);
+			}
+
+			for (let i = 0; i < 10; i++) {
+				createCloud();
+			}
+		</script>
+	</body>
 </html>
